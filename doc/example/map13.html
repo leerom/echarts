@@ -48,16 +48,12 @@
 // 自定义扩展图表类型：mapType = continent 大洲地图
 require('echarts/util/mapData/params').params.continent = {
     getGeoJson: function (callback) {
-        $.getJSON('geoJson/continent_geo.json',callback);
+        $.getJSON('geoJson/continent_geo2.json',callback);
     }
 }
 option = {
-    title : {
-        text : '金棕榈 智慧旅行@云数据',
-        subtext: 'by 江江的喵',
-        link: 'http://www.palmyou.com/',
-        sublink: 'http://weibo.com/u/2813464944'
-    },
+  backgroundColor: 'rgba(0,0,0,1)',
+    
     tooltip : {
         trigger: 'item',
         formatter: function (a){
@@ -67,24 +63,16 @@ option = {
             return sName + '<br/>' + pName + ' : ' + value;
         }
     },
-    toolbox: {
-        show : true,
-        orient : 'vertical',
-        x: 'right',
-        y: 'center',
-        feature : {
-            mark : {show: true},
-            dataView : {show: true, readOnly: false},
-            restore : {show: true},
-            saveAsImage : {show: true}
-        }
-    },
+
     dataRange: {
         min: 0,
-        max: 1000,
-        text:['热', '冷'],
+        max: 10000,
+        text:['高', '低'],
+        textStyle:{
+            color:'#fff'
+        },
         splitNumber:0,
-        color: ['orangered','yellow','lightskyblue']
+        color: ['#FEF422','#D4F72E', '#0631E1']
     },
     series : [
         {
@@ -92,25 +80,45 @@ option = {
             type: 'map',
             mapType: 'continent', // 自定义扩展图表类型
             itemStyle:{
-                normal:{label:{show:true}},
+                normal:{
+                  label:{
+                    show:true,
+                    textStyle: {color: '#fff'}
+                	}
+            	},
                 emphasis:{label:{show:true}}
             },
             data:[
-                {name: '亚洲', value: 8967.69},
-                {name: '大洋洲', value: 592.09},
-                {name: '欧洲', value: 183.62},
+              	{name: '日韩地区', value: 5167.69},
+              	{name: '东南亚', value: 4667.69},
+              	{name: '中国', value: 667.69},
+              {name: '南亚', value: 1067.69},
+              {name: '西亚', value: 967.69},
+              {name: '中亚', value: 6967.69},
+              {name: '西欧', value: 4067.69},
+              {name: '美国', value: 2967.69},
+              {name: '加拿大', value: 1967.69},
+              {name: '中北美洲', value: 967.69},
+              {name: '大洋洲', value: 592.09},
+              {name: '俄罗斯', value: 1267.69},
+                {name: '欧洲', value: 4183.62},
                 {name: '北美洲', value: 41.63},
                 {name: '南美洲', value: 10.41},
                 {name: '非洲', value: 22.5837}
             ],
             // 文本位置修正
             textFixed : {
-                '大洋洲' : [265, 0],
+                '大洋洲' : [300, 0],
                 '非洲' : [10, -30],
-                '北美洲' : [20, 0],
+                '西欧' : [10, 20],
+                '西亚' : [-50, -10],
                 '南美洲' : [0, -10],
                 '亚洲' : [20, -30],
-                '欧洲' : [200, -10],
+                '欧洲' : [0, 0],
+              	'俄罗斯' : [200, 0],
+              	'中西亚': [-40, -10],
+              '美国':[40, 10],
+              '加拿大':[-20, 0]
             }
         }
     ]
